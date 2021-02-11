@@ -1,4 +1,4 @@
-const {Sequelize} = require('sequelize');
+const {Sequelize,DataTypes} = require('sequelize');
 const db=require("../middleware/db-config");
 
 const Post =db.define("post",{

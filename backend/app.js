@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 const routeuser = require('./routes/routeuser');
-//const routeforum = require('./routes/routeforum');
-//const routepost = require('./routes/routepost');
-
+const routeforum = require('./routes/routeforum');
+const routepost = require('./routes/routepost');
+const db=require("./middleware/db-config");
+db.sync();
 
 app.use((req, res, next) => {/*autorisation contact multi-port */
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,12 +19,12 @@ app.use(bodyParser.json());
 
 
 /*partie users */
-app.use('/', routeuser);
+app.use('/api/user', routeuser);
 
 /*partie forum */
-/*app.use('/', routeforum);
+app.use('/api/forum', routeforum);
 
 /*partie post */
-//app.use('/', routepost);
+app.use('/api/post', routepost);
 
 module.exports = app;

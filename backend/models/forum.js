@@ -1,4 +1,4 @@
-const {Sequelize} = require('sequelize');
+const {Sequelize,DataTypes} = require('sequelize');
 const db=require("../middleware/db-config");
 
 const Forum =db.define("forum",{
@@ -6,10 +6,10 @@ const Forum =db.define("forum",{
         type:DataTypes.STRING
     },
     date_de_creation:{
-        type:DataTypes.STRING
+        type:DataTypes.DATE
     },
     date_dernier_post:{
-        type:DataTypes.STRING
+        type:DataTypes.DATE
     },
 });
 

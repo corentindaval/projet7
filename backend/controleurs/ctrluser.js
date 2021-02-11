@@ -1,18 +1,19 @@
 const user = require('../models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const Sequelize =require("sequelize");
 
 
 
 
-exports.postsignup = (req, res, next) => {/*route signup */
+ exports.signup = (req, res, next) => {/*route signup */
     console.log(req.body);
-    bcrypt.hash(req.body.password, 10)
+    bcrypt.hash(req.body.mdp, 10)
         .then(hash => {
             delete req.body.userId;
-            const User = new user({
-                login: req.body.login,
-                password: hash
+            const User= user.create({
+                login: req.body.login;
+                mdp: hash
             });
             User.save()
                 .then(() => res.status(201).json({ message: 'utilisateur enregistrer' }))
@@ -26,7 +27,7 @@ exports.postsignup = (req, res, next) => {/*route signup */
 /*identifiant déja utiliser 
 throw new Error("identifiant déja utiliser")
 */
-exports.postlogin = (req, res, next) => {/*route login*/
+exports.login = (req, res, next) => {/*route login*/
     user.findOne({ login: req.body.login })
         .then(user => {
             if (!user) {
