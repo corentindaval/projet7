@@ -17,6 +17,7 @@ let request={
 };
 const result=await fetch("http://localhost:3000/api/user/login",request);
 const data=await result.json();
+
 console.log(data);
 
 }
