@@ -11,13 +11,18 @@
   <nav>
     <div><img src="img/font.png"></img></div>
 <div id="liens"><a id="gestion" href="./gestion.html">gestion</a>
-   <a id="deconnexion" href="./deconnexion.html">deconnexion</a></div>
+   <a id="deconnexion" onclick="deconnexion()" href="">deconnexion</a></div>
   </nav>
   <main>
-      <table>
-          <tr><td>titre</td><td>date de création</td><td>date du dernier message</td></tr>
+      <table id="affichage">
+          
       </table>
-      <button><a>creer un forum</a></button>
+      <div id="creaforum">
+        <div><label>titre:</label><input id="titre"type="textbox"></input></div>
+        <input type="submit"  onclick="creerforum(event)" value="creer un forum"></input>
+      </div>
   </main>
+  <script src="js/accueil.js" type="text/javascript"></script>
+  <script src="js/scon.js" type="text/javascript"></script>
  </body> 
 </html>

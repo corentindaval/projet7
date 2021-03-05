@@ -3,7 +3,7 @@ async function creerCompte(event){
     event.preventDefault();
 let identifiant =document.getElementById("identifiant");
 let mdp=document.getElementById("mdp");
-alert(identifiant.value);
+
 let request={
     method:"POST",
     headers: {

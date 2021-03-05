@@ -3,7 +3,7 @@ async function logerCompte(event){
     event.preventDefault();
 let identifiant =document.getElementById("identifiant");
 let mdp=document.getElementById("mdp");
-alert(identifiant.value);
+//alert(identifiant.value);
 let request={
     method:"POST",
     headers: {
@@ -18,6 +18,14 @@ let request={
 const result=await fetch("http://localhost:3000/api/user/login",request);
 const data=await result.json();
 
-console.log(data);
+//console.log(data);
+if(data.token!=null & data.userId!=null){
+localStorage.setItem("token",data.token);
+localStorage.setItem("userId",data.userId);
+location.href="./accueil.html";
+}else if(data.error!=null){
+alert(data.error);
+}
+
 
 }
