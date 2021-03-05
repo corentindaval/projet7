@@ -8,6 +8,9 @@ const Post =db.define("post",{
     createur:{
         type:DataTypes.STRING
     },
+    media:{
+        type:DataTypes.STRING
+    },
     contenu:{
         type:DataTypes.STRING
     },

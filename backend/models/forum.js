@@ -6,7 +6,8 @@ const Forum =db.define("forum",{
         type:DataTypes.STRING
     },
     date_de_creation:{
-        type:DataTypes.DATE
+        type:DataTypes.DATE,
+        defaultValue:DataTypes.NOW
     },
     date_dernier_post:{
         type:DataTypes.DATE

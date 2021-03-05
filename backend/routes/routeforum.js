@@ -7,5 +7,6 @@ const auth = require('../middleware/auth');
 router.post("/nvforum",ctrlforum.nvforum);
 router.post("/updateforum",ctrlforum.updateforum);
 router.post("/suprforum",ctrlforum.suprforum);
+router.post("/listforum",ctrlforum.listforum);
 
 module.exports = router;

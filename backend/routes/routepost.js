@@ -8,5 +8,6 @@ const auth = require('../middleware/auth');
 router.post("/nvpost",ctrlpost.nvpost);
 router.post("/modifpost",ctrlpost.modifpost);
 router.post("/suprpost",ctrlpost.suprpost);
+router.post("/creerlistpost",ctrlpost.creerlistpost);
 
 module.exports = router;
