@@ -2,10 +2,10 @@ const {Sequelize,DataTypes} = require('sequelize');
 const db=require("../middleware/db-config");
 
 const Post =db.define("post",{
-    forum:{
+    idforum:{
         type:DataTypes.STRING
     },
-    createur:{
+    idcreateur:{
         type:DataTypes.STRING
     },
     media:{
@@ -15,7 +15,8 @@ const Post =db.define("post",{
         type:DataTypes.STRING
     },
     date_creation:{
-        type:DataTypes.DATE
+        type:DataTypes.DATE,
+        defaultValue:DataTypes.NOW
     },
 });
 
