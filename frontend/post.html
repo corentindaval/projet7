@@ -4,6 +4,7 @@
   <meta charset="utf-8"><!--definition de l'encodage -->
   <meta name="viewport" content="width=device-width"><!--definition du viewport -->
   <title>chat groupomania(post)</title><!--definition du titre -->
+  <link rel="icon" href="./img/icon.png"/>
   <link rel="stylesheet" href="./css/post.css"/><!--liaison avec la feuille de style css -->
  </head>
  
@@ -11,7 +12,7 @@
   <nav>
     <div><img src="img/font.png"></img></div>
 <div id="liens"><a id="gestion" href="./accueil.html">accueil</a>
-   <a id="deconnexion" href="./deconnexion.html">deconnexion</a></div>
+   <a id="deconnexion" onclick="deconnexion()">deconnexion</a></div>
   </nav>
   <main>
       <div id="affichage">
@@ -19,11 +20,12 @@
 
       </div>
       <div id="creapost">
-        <div><label>image:</label><input id="image"type="textbox"></input></div>
-        <div><label>contenu:</label><input id="contenu"type="textbox"></input></div>
-        <input type="submit"  onclick="creerpost(event)" value="creer un post"></input>
+        <div class="elcreapost"><label>image:</label><input id="image"type="file"></input></div>
+        <div class="elcreapost"><label>contenu:</label><input id="contenu"type="textbox"></input></div>
+        <div class="elcreapost"><input type="submit"  onclick="creerpost(event)" value="creer un post"></input></div>
       </div>
   </main>
   <script src="js/post.js" type="text/javascript"></script>
+  <script src="js/scon.js" type="text/javascript"></script>
  </body> 
 </html>

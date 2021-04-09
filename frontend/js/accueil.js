@@ -8,10 +8,12 @@ async function creerforum(event){
         method:"POST",
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'authorization':localStorage.getItem("token")
         },
         body:JSON.stringify({
-            titre:titre.value
+            titre:titre.value,
+            idcreateur:localStorage.getItem("userId")
         })
     };
     const result=await fetch("http://localhost:3000/api/forum/nvforum",request);
@@ -43,8 +45,13 @@ async function creerlistforum(){
 		const defcol=" <tr><td>titre</td><td>date de création</td><td>date du dernier message</td></tr>";
 		let buildtab="";
 		for(let forum of data){
-			let ligneprod="<tr><td><a href='post.html?id="+forum.id+"'>"+forum.titre+"</a></td><td>"+forum.date_de_creation_format+"</td><td>"+forum.date_dernier_post+"</td><td><input type='submit' class='bsupr'  onclick='suprforum(event)' value='x'></input></td></tr>";
-			buildtab=buildtab+ligneprod;
+            if(forum.idcreateur==localStorage.getItem("userId")||localStorage.getItem("droituser")=="admin"){
+			let ligneprod="<tr><td><a href='post.html?id="+forum.id+"'>"+forum.titre+"</a></td><td>"+forum.date_de_creation_format+"</td><td>"+forum.date_dernier_post+"</td><td><input type='submit' id='"+forum.id+"' class='bsupr'  onclick='suprforum(event,"+forum.id+")' value='x'></input></td></tr>";
+            buildtab=buildtab+ligneprod;
+            }else{
+                let ligneprod="<tr><td><a href='post.html?id="+forum.id+"'>"+forum.titre+"</a></td><td>"+forum.date_de_creation_format+"</td><td>"+forum.date_dernier_post+"</td></tr>";
+            buildtab=buildtab+ligneprod;
+            }
 		}
 		let buildf=defcol+buildtab;
 		tab.innerHTML=buildf;
@@ -54,7 +61,7 @@ async function creerlistforum(){
 
 creerlistforum();
 
-async function suprforum(event){
+async function suprforum(event,id){
     event.preventDefault();
     let titre =document.getElementById("titre");
  //alert(titre.value);
@@ -63,10 +70,12 @@ async function suprforum(event){
         method:"POST",
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'authorization':localStorage.getItem("token")
         },
         body:JSON.stringify({
-            titre:titre.value
+            id:id,
+            userid:localStorage.getItem("userId")
         })
     };
     const result=await fetch("http://localhost:3000/api/forum/suprforum",request);

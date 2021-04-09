@@ -5,9 +5,14 @@ nav
 border-bottom: solid;
 }
 
-#creaforum
+nav a
 {
-    width:20%;
+color:red;
+font-style: bold;
+}
+#creapost
+{
+    width:auto;
     margin:auto;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -16,6 +21,13 @@ flex-direction: column;
 border:solid;
 border-width: 1px;
 }
+.elcreapost
+{
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+
 #titre
 {
 margin-bottom: 5px;
@@ -72,4 +84,25 @@ tr
 {
 border-bottom: groove;
 border-width: 1px;
+}
+
+.message
+{
+margin-top: 10px;
+margin-bottom: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+border-style: solid;
+border-color: black;
+border-width: 1px;
+}
+
+.message img
+{
+margin:auto;
+}
+
+@media all and (max-width: 768px) /*mise en place du responsive*/
+{
+    
 }

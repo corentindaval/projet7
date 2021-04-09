@@ -22,6 +22,7 @@ const data=await result.json();
 if(data.token!=null & data.userId!=null){
 localStorage.setItem("token",data.token);
 localStorage.setItem("userId",data.userId);
+localStorage.setItem("droituser",data.droituser);
 location.href="./accueil.html";
 }else if(data.error!=null){
 alert(data.error);

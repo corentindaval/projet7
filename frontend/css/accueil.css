@@ -5,6 +5,12 @@ nav
 border-bottom: solid;
 }
 
+nav a
+{
+color:red;
+font-style: bold;
+}
+
 #creaforum
 {
     width:20%;
@@ -72,4 +78,9 @@ tr
 {
 border-bottom: groove;
 border-width: 1px;
+}
+
+@media all and (max-width: 768px) /*mise en place du responsive*/
+{
+
 }
