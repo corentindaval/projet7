@@ -5,6 +5,9 @@ const Forum =db.define("forum",{
     titre:{
         type:DataTypes.STRING
     },
+    idcreateur:{
+        type:DataTypes.STRING
+    },
     date_de_creation:{
         type:DataTypes.DATE,
         defaultValue:DataTypes.NOW

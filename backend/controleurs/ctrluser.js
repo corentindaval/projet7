@@ -12,13 +12,24 @@ const Sequelize =require("sequelize");
         .then(hash => {
             delete req.body.userId;
            // console.log(hash);
-            const User= user.create({
+        // let drnvut="";
+      
+        // console.log("contenu_user:",user.findAll({attributes:["id","droit"]}));
+        // if(user.findAll({attributes:["id","droit"]})!=[""]){
+            // drnvut="utilisateur";
+            // }else{
+            // drnvut="admin";
+            // }
+
+             user.create({
                 username: req.body.identifiant,
                 password: hash,
-                droit:"admin"
-            });
+                // droit:"admin"
+                 droit:"utilisateur"
+                // droit:drnvut
+            })
            // console.log(user.username,user.password,user.droit);
-            user.save()
+           // user.save()
                 .then(() => res.status(201).json({ message: 'utilisateur enregistré' }))
 
                 .catch(error => res.status(400).json({ message: "identifiant" }))
@@ -31,7 +42,7 @@ const Sequelize =require("sequelize");
 throw new Error("identifiant déja utiliser")
 */
 exports.login = (req, res, next) => {/*route login*/
-    user.findOne({ username: req.body.identifiant })
+    user.findOne({where:{ username: req.body.identifiant }})
         .then(user => {
             console.log(user.username,user.password);
             if (!user) {
@@ -49,8 +60,9 @@ exports.login = (req, res, next) => {/*route login*/
                    // console.log("reussi");
                     res.status(200).json({
                         userId: user.id,
+                        droituser: user.droit,
                         token: jwt.sign(
-                            { userId: user.id },
+                            { userId: user.id,droituser:user.droit },
                             'RANDOM_TOKEN_SECRET',
                             { expiresIn: '24h' }
                         )
