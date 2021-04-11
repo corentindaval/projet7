@@ -55,8 +55,9 @@ async function creerlistforum(){
 		}
 		let buildf=defcol+buildtab;
 		tab.innerHTML=buildf;
-
-
+    let affusercon=document.getElementById("usercon");
+    let buildaff="<p>Bonjour : "+localStorage.getItem("nomuser")+"</p>";
+    affusercon.innerHTML=buildaff;
 }
 
 creerlistforum();

@@ -8,6 +8,7 @@ async function creerpost(event){
     let Contenu =document.getElementById("contenu");
   
  //alert(titre.value);
+ if(image.value!=""||Contenu.value!=""){
     const fdata=new FormData();
     if(image.value!=""){
     fdata.append("image",image.files[0],image.value);
@@ -16,6 +17,7 @@ async function creerpost(event){
     }
     fdata.set("contenu",Contenu.value);
     fdata.set("idforum",urlparam.get("id"));
+    fdata.set("nomuser",localStorage.getItem("nomuser"));
     let request={
         method:"POST",
         headers: {
@@ -29,7 +31,7 @@ async function creerpost(event){
     const data=await result.json();
     console.log(data);
     location.reload();
-
+  }
 }
 
 async function creerlistpost(){
@@ -56,22 +58,24 @@ async function creerlistpost(){
 		for(let post of data){
             if(post.idcreateur==localStorage.getItem("userId")||localStorage.getItem("droituser")=="admin"){
              if(post.media!=""){
-                ligneprod="<div class='message'><img class='imgpost' src='http://localhost:3000/images/"+post.media+"' /><p>"+post.contenu+"</p><input type='submit' class='bsupr'  onclick='suprpost(event,"+post.id+")' value='x'></input></div>";
+                ligneprod="<div class='message'><p>posté le :"+post.date_de_creation_format+" par : "+post.nomcreateur+"</p><img class='imgpost' src='http://localhost:3000/images/"+post.media+"' /><p>"+post.contenu+"</p><input type='submit' class='bsupr'  onclick='suprpost(event,"+post.id+")' value='x'></input></div>";
              }else{
-                ligneprod="<div class='message'><p>"+post.contenu+"</p><input type='submit' class='bsupr'  onclick='suprpost(event,"+post.id+")' value='x'></input></div>";
+                ligneprod="<div class='message'><p>posté le :"+post.date_de_creation_format+" par : "+post.nomcreateur+"</p><p>"+post.contenu+"</p><input type='submit' class='bsupr'  onclick='suprpost(event,"+post.id+")' value='x'></input></div>";
              }
             }else{
                 if(post.media!=""){
-                    ligneprod="<div class='message'><img class='imgpost' src='http://localhost:3000/images/"+post.media+"' /><p>"+post.contenu+"</p></div>";
+                    ligneprod="<div class='message'><p>posté le :"+post.date_de_creation_format+" par : "+post.nomcreateur+"</p><img class='imgpost' src='http://localhost:3000/images/"+post.media+"' /><p>"+post.contenu+"</p></div>";
                  }else{
-                    ligneprod="<div class='message'><p>"+post.contenu+"</p></div>";
+                    ligneprod="<div class='message'><p>posté le :"+post.date_de_creation_format+" par : "+post.nomcreateur+"</p><p>"+post.contenu+"</p></div>";
                  } 
             }
 		buildtab=buildtab+ligneprod;
 		}
 		let buildf=buildtab;
 		tab.innerHTML=buildf;
-
+        let affusercon=document.getElementById("usercon");
+        let buildaff="<p>connecté en tant que: "+localStorage.getItem("nomuser")+"</p>";
+        affusercon.innerHTML=buildaff;
 
 }
 creerlistpost();
@@ -97,6 +101,6 @@ async function suprpost(event,id){
     const result=await fetch("http://localhost:3000/api/post/suprpost",request);
     const data=await result.json();
     console.log(data);
-    location.reload();
+   // location.reload();
 
 }

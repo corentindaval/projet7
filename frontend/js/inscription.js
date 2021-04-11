@@ -17,6 +17,14 @@ let request={
 };
 const result=await fetch("http://localhost:3000/api/user/signup",request);
 const data=await result.json();
-console.log(data);
-
+//console.log(data);
+if(data.token!=null & data.userId!=null){
+    localStorage.setItem("token",data.token);
+    localStorage.setItem("userId",data.userId);
+    localStorage.setItem("droituser",data.droituser);
+    localStorage.setItem("nomuser",data.nomuser);
+    location.href="./accueil.html";
+    }else if(data.error!=null){
+    alert(data.error);
+    }
 }
