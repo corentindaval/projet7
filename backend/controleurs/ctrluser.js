@@ -30,7 +30,18 @@ const Sequelize =require("sequelize");
             })
            // console.log(user.username,user.password,user.droit);
            // user.save()
-                .then(() => res.status(201).json({ message: 'utilisateur enregistré' }))
+                .then(user=>{
+                    res.status(200).json({
+                        userId: user.id,
+                        droituser: user.droit,
+                        nomuser:user.username,
+                        token: jwt.sign(
+                            { userId: user.id,droituser:user.droit,nomuser:user.username },
+                            'RANDOM_TOKEN_SECRET',
+                            { expiresIn: '24h' }
+                        )
+                    });
+                })
 
                 .catch(error => res.status(400).json({ message: "identifiant" }))
 
@@ -61,8 +72,9 @@ exports.login = (req, res, next) => {/*route login*/
                     res.status(200).json({
                         userId: user.id,
                         droituser: user.droit,
+                        nomuser:user.username,
                         token: jwt.sign(
-                            { userId: user.id,droituser:user.droit },
+                            { userId: user.id,droituser:user.droit,nomuser:user.username },
                             'RANDOM_TOKEN_SECRET',
                             { expiresIn: '24h' }
                         )

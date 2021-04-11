@@ -4,8 +4,9 @@ const fs = require("fs");
 
 
 exports.nvpost = (req, res, next) => {/*route signup */
-    console.log(req.body);
+    console.log("corpspost:",req.body);
    // console.log(req.file.filename);
+   
     let cmedia="";
     if(req.file!=null){
 cmedia=req.file.filename;
@@ -16,7 +17,8 @@ cmedia="";
         idforum:req.body.idforum,
         idcreateur: req.verifieduserid,
         media:cmedia,
-        contenu:req.body.contenu
+        contenu:req.body.contenu,
+        nomcreateur:req.body.nomuser
     })
     .then(() => res.status(201).json({ message: 'post creer' }))
 
@@ -41,7 +43,7 @@ exports.suprpost = (req, res, next) => {/*route login*/
           .catch(error => res.status(400).json({ error:error.message }));
       });
      }else{
-        req.status(401).json({message:"supresion interdite"})
+        res.status(401).json({message:"supresion interdite"})
      }
     })
 
@@ -53,7 +55,7 @@ exports.suprpost = (req, res, next) => {/*route login*/
 
 
 exports.creerlistpost = (req, res, next) => {/*route login*/
-        post.findAll({where:{idforum:req.body.idforum},attributes:["id","idforum","idcreateur","media","contenu",[Sequelize.fn("date_format",Sequelize.col("date_creation"),"%H:%i %d/%m/%Y"),"date_de_creation_format"]]})
+        post.findAll({where:{idforum:req.body.idforum},attributes:["id","idforum","idcreateur","nomcreateur","media","contenu",[Sequelize.fn("date_format",Sequelize.col("date_creation"),"%H:%i %d/%m/%Y"),"date_de_creation_format"]]})
         .then(forums => res.status(200).json(forums))
         .catch(error => res.status(400).json({ error }));
     
