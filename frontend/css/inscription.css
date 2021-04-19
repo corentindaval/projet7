@@ -38,4 +38,26 @@ color: black;
 @media all and (max-width: 768px) /*mise en place du responsive*/
 {
     
+    body
+    {
+        background-position-x: center;
+        background-position-y: 20%;
+        background-image:url("../img/font.png") ;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+    main
+    {
+        display:block;
+        flex-direction:column;	
+        padding-top: 10%;
+        margin-left: auto;
+        text-align: center;
+    }
+    table
+    {
+ margin:auto;
+    }
+    
+
 }

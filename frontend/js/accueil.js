@@ -34,7 +34,7 @@ async function creerlistforum(){
             'Content-Type': 'application/json'
         },
         body:JSON.stringify({
-
+            
         })
     };
     const result=await fetch("http://localhost:3000/api/forum/listforum",request);
@@ -42,14 +42,14 @@ async function creerlistforum(){
     console.log(data);
 
 	let tab = document.getElementById("affichage");
-		const defcol=" <tr><td>titre</td><td>date de création</td><td>date du dernier message</td></tr>";
+		const defcol=" <tr><td>Titre</td><td>Date de création</td></tr>";
 		let buildtab="";
 		for(let forum of data){
             if(forum.idcreateur==localStorage.getItem("userId")||localStorage.getItem("droituser")=="admin"){
-			let ligneprod="<tr><td><a href='post.html?id="+forum.id+"'>"+forum.titre+"</a></td><td>"+forum.date_de_creation_format+"</td><td>"+forum.date_dernier_post+"</td><td><input type='submit' id='"+forum.id+"' class='bsupr'  onclick='suprforum(event,"+forum.id+")' value='x'></input></td></tr>";
+			let ligneprod="<tr><td><a href='post.html?id="+forum.id+"'>"+forum.titre+"</a></td><td>"+forum.date_de_creation_format+"</td><td><input type='submit' id='"+forum.id+"' class='bsupr'  onclick='suprforum(event,"+forum.id+")' value='x'></input></td></tr>";
             buildtab=buildtab+ligneprod;
             }else{
-                let ligneprod="<tr><td><a href='post.html?id="+forum.id+"'>"+forum.titre+"</a></td><td>"+forum.date_de_creation_format+"</td><td>"+forum.date_dernier_post+"</td></tr>";
+                let ligneprod="<tr><td><a href='post.html?id="+forum.id+"'>"+forum.titre+"</a></td><td>"+forum.date_de_creation_format+"</td></tr>";
             buildtab=buildtab+ligneprod;
             }
 		}
@@ -57,7 +57,7 @@ async function creerlistforum(){
 		tab.innerHTML=buildf;
     let affusercon=document.getElementById("usercon");
     let buildaff="<p>Bonjour : "+localStorage.getItem("nomuser")+"</p>";
-    affusercon.innerHTML=buildaff;
+   // affusercon.innerHTML=buildaff;
 }
 
 creerlistforum();

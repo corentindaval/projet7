@@ -13,7 +13,7 @@ font-style: bold;
 
 #creaforum
 {
-    width:20%;
+    width:30%;
     margin:auto;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -82,5 +82,71 @@ border-width: 1px;
 
 @media all and (max-width: 768px) /*mise en place du responsive*/
 {
+    nav
+    {
+        display:flex;
+        flex-direction: column;
+    border-bottom: solid;
+    }
+    
+    nav a
+    {
+    color:red;
+    font-style: bold;
+    size:100%;
+    }
+    
+    #creaforum
+    {
+        width:auto;
+        margin:auto;
+    display: block;
+    flex-direction: column;
+    border:solid;
+    border-width: 0px;
+    }
 
+    img
+    {
+    height:90px;
+    width:140px;
+    margin-right: auto;
+    }
+    #liens
+    {
+    margin-top: 30px;
+    margin-left: 10px;
+    }
+    #deconnexion
+    {
+    margin-right:10px ;
+    margin-left: 10px;
+    }
+    
+    #gestion
+    {
+     margin-right: 10px;
+     margin-left: 10px;
+    }
+    
+    main
+    {
+        display:block;
+        flex-direction:column;	
+        padding-top: 10%;
+        
+        text-align: center;
+    }
+    
+    
+    table
+    {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-style: groove;
+    border-width: 1px;
+    }
+    
 }
