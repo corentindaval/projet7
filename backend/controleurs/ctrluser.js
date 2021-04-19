@@ -85,3 +85,13 @@ exports.login = (req, res, next) => {/*route login*/
         .catch(error => res.status(500).json({ error }));
 };
 
+exports.supruser = (req, res, next) => {/*route login*/
+    console.log("requete:",req.body);
+    user.findOne({where:{ id: req.body.id }})
+    .then(usersupr => {
+        user.destroy({where:{ id: req.body.id }})
+          .then(() => res.status(200).json({ message: 'objet suprimer' }))
+          .catch(error => res.status(400).json({ error }));
+    })
+    .catch(error => res.status(500).json({ error }));
+};

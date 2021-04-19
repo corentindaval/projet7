@@ -25,7 +25,7 @@ exports.suprforum = (req, res, next) => {/*route login*/
     console.log(req.body);
     forum.findOne({where:{ id: req.body.id }})
     .then(forumsupr => {
-        if(req.droituser=="admin"||req.userid==forum.idcreateur){ //rajouter si utilisateur a creer post
+        if(req.droituser=="admin"||req.body.userid==forum.idcreateur){ //rajouter si utilisateur a creer post
         forum.destroy({where:{ id: req.body.id }})
           .then(() => res.status(200).json({ message: 'objet suprimer' }))
           .catch(error => res.status(400).json({ error }));
