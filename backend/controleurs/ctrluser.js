@@ -49,8 +49,8 @@ exports.signup = (req, res, next) => {/*inscription */
         })
         .catch(error => res.status(500).json({ error }));
 };
-/*identifiant déja utiliser 
-throw new Error("identifiant déja utiliser")
+/*identifiant déja utilisé 
+throw new Error("identifiant déja utilisé")
 */
 exports.login = (req, res, next) => {/*connexion*/
     user.findOne({ where: { username: req.body.identifiant } })

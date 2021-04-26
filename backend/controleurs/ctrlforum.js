@@ -2,7 +2,7 @@ const forum = require('../models/forum');
 const Sequelize = require("sequelize");
 
 
-exports.nvforum = (req, res, next) => {/*creation d un forum */
+exports.nvforum = (req, res, next) => {/*création d' un forum */
     console.log(req.body);
     forum.create({
         titre: req.body.titre,
@@ -15,7 +15,7 @@ exports.nvforum = (req, res, next) => {/*creation d un forum */
 
 };
 /*identifiant déja utiliser 
-throw new Error("identifiant déja utiliser")
+throw new Error("identifiant déjà utilisé")
 */
 exports.updateforum = (req, res, next) => {/*modification d un forum*/
 
@@ -25,7 +25,7 @@ exports.suprforum = (req, res, next) => {/*supression d un forum*/
     console.log(req.body);
     forum.findOne({ where: { id: req.body.id } })
         .then(forumsupr => {
-            if (req.droituser == "admin" || req.body.userid == forum.idcreateur) { //rajouter si utilisateur a creer post
+            if (req.droituser == "admin" || req.body.userid == forum.idcreateur) { //rajouter si utilisateur a créé post
                 forum.destroy({ where: { id: req.body.id } })
                     .then(() => res.status(200).json({ message: 'objet suprimer' }))
                     .catch(error => res.status(400).json({ error }));

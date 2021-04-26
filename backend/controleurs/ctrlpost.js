@@ -8,7 +8,7 @@ const fs = require("fs");
 
 
 
-exports.majdermes = (req, res, next) => {//recuperation pour date du dernier post d un forum
+exports.majdermes = (req, res, next) => {//récupération pour date du dernier post d' un forum
     post.findAll({ where: { idforum: req.body.idforum }, attributes: ["id", "idforum", "idcreateur", "nomcreateur", "media", "contenu", [Sequelize.fn("date_format", Sequelize.col("date_creation"), "%H:%i %d/%m/%Y"), "date_de_creation_format"]] })
         .then(forums => res.status(200).json(forums))
         .catch(error => res.status(400).json({ error }));
@@ -16,7 +16,7 @@ exports.majdermes = (req, res, next) => {//recuperation pour date du dernier pos
 
 }
 
-exports.nvpost = (req, res, next) => {/*creation de post */
+exports.nvpost = (req, res, next) => {/*création de post */
     console.log("corpspost:", req.body);
     // console.log(req.file.filename);
 
@@ -40,14 +40,14 @@ exports.nvpost = (req, res, next) => {/*creation de post */
         .catch(error => res.status(400).json({ message: 'idcreateur' }))
 
 };
-/*identifiant déja utiliser 
-throw new Error("identifiant déja utiliser")
+/*identifiant déjà utilisé
+throw new Error("identifiant déjà utilisé")
 */
 exports.modifpost = (req, res, next) => {/*modification de post*/
 
 };
 
-exports.suprpost = (req, res, next) => {/*supresion de post*/
+exports.suprpost = (req, res, next) => {/*supression de post*/
     post.findOne({ where: { id: req.body.id } })
         .then(Post => {
 
@@ -67,7 +67,7 @@ exports.suprpost = (req, res, next) => {/*supresion de post*/
 };
 
 
-exports.creerlistpost = (req, res, next) => {/*recuperation liste des posts pour un forum*/
+exports.creerlistpost = (req, res, next) => {/*récupération liste des posts pour un forum*/
     post.findAll({ where: { idforum: req.body.idforum }, attributes: ["id", "idforum", "idcreateur", "nomcreateur", "media", "contenu", [Sequelize.fn("date_format", Sequelize.col("date_creation"), "%H:%i %d/%m/%Y"), "date_de_creation_format"]] })
         .then(forums => res.status(200).json(forums))
         .catch(error => res.status(400).json({ error }));
