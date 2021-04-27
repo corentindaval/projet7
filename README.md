@@ -1,4 +1,4 @@
-# projet7
-pour demarer le serveur utiliser npm start
-ne pas oublier de demarer l'outil de base de donnée(wamp)
-ne pas oublier de charger les module node(voir le fichier package.json pour la liste des modules à charger.)
+# Projet7 Groupomania
+Pour démarrer le serveur utiliser npm start
+Ne pas oublier de démarrer l'outil de base de données SGBD MySQL (WampServer)
+Ne pas oublier de charger les modules node(voir le fichier package.json pour la liste des modules à charger.)
